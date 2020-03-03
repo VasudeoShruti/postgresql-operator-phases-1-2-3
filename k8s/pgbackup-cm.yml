@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgbackup-cm
+  labels:
+    app: postgres
+data:
+  BUCKET_NAME: backup-123
+  ENDPOINT: "https://s3.us-south.cloud-object-storage.appdomain.cloud"
+  API_KEY: "oVWubo9y1KXmQDCwLfl1RBOijKqjDxOem6PYsgg2R7HC"
+  AUTH_ENDPOINT: "https://iam.cloud.ibm.com/identity/token"
+  RESOURCE_CRN: "crn:v1:bluemix:public:cloud-object-storage:global:a/b6c597e9c7804d2b9ab48afbe94726ab:1b09bb96-192c-4d07-b041-b54212b0cc6e::"
+
