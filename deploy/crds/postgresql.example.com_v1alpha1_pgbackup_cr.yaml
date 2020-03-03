@@ -5,10 +5,10 @@ metadata:
 spec:
   image: applicadb/postgres-python 
   serviceIp: service.psql.svc.cluster.local
-  dbName: books;students;employes
+  dbName: books;students;employes;supermarket
   postgresDb: postgresdb
   postgresUser: postgresadmin
   postgresPassword: admin123
   backupFile: data.sql
   bucketName: backup-123
-  schedule: "*/5 * * * * "
+  schedule: "*/1 * * * * "

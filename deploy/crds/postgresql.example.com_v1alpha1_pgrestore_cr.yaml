@@ -5,7 +5,7 @@ metadata:
 spec:
   image: applicadb/postgres-python
   serviceIp: service.psql.svc.cluster.local
-  dbName: students-02-03-2020.sql;
+  dbName: students-02-03-2020.sql;supermarket-03-03-2020.sql
   postgresDb: postgresdb
   postgresUser: postgresadmin
   postgresPassword: admin123

@@ -2,20 +2,15 @@
 - name: restore postgres
   k8s:
     definition:
-      apiVersion: apps/v1
-      kind: Deployment
+      apiVersion: batch/v1
+      kind: Job
       metadata:
         name: 'restore-postgres'
         namespace: '{{ meta.namespace }}'
       spec:
-        replicas: 1
-        selector:
-          matchLabels:
-            app: postgres
         template:
           metadata:
-            labels:
-              app: postgres
+            name: 'restore-postgres'
           spec:
             containers:
             - name: postgres
@@ -41,7 +36,7 @@
                 mountPath: "/var/lib/postgresql/data"
               command: ["/bin/sh","-c"]
               args: ["apt-get update && apt-get install -y wget && pip install ibm-cos-sdk && wget https://raw.githubusercontent.com/deekshahegde86/postgresql-operator-phases-1-2-3/master/scripts/restore/restore-db-backup.sh && bash restore-db-backup.sh "]
-            restartPolicy: OnFailure
+            restartPolicy: Never
             volumes:
             - name: postgresql-data
               persistentVolumeClaim:
