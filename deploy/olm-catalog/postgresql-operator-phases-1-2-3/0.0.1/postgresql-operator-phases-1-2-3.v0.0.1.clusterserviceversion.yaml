@@ -199,3 +199,11 @@ spec:
   provider: {}
   replaces: postgresql-operator-phases-1-2-3.v0.0.0
   version: 0.0.1
+  keywords:
+  - postgres
+  - database
+  maintainers:
+  - email: openlabs@ibm.com
+    name: Openlabs
+  provider:
+    name: Openlabs
