@@ -40,5 +40,5 @@
             volumes:
             - name: postgresql-data
               persistentVolumeClaim:
-                claimName: postgresql-pvc-vol22
+                claimName: postgresql-pvc-vol-2
 
