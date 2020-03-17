@@ -12,7 +12,6 @@ metadata:
           },
           "spec": {
             "backupFile": "data.sql",
-            "bucketName": "backup-123",
             "dbName": "books;students;employes;supermarket",
             "image": "applicadb/postgres-python",
             "postgresDb": "postgresdb",
@@ -54,6 +53,14 @@ metadata:
   name: postgresql-operator-phases-1-2-3.v0.0.1
   namespace: placeholder
 spec:
+  keywords:
+  - postgres
+  - database
+  maintainers:
+  - email: openlabs@ibm.com
+    name: Openlabs
+  provider:
+    name: Openlabs
   apiservicedefinitions: {}
   customresourcedefinitions:
     owned:
@@ -195,15 +202,14 @@ spec:
     type: MultiNamespace
   - supported: true
     type: AllNamespaces
-  maturity: alpha
-  provider: {}
-  replaces: postgresql-operator-phases-1-2-3.v0.0.0
-  version: 0.0.1
   keywords:
   - postgres
   - database
   maintainers:
   - email: openlabs@ibm.com
     name: Openlabs
+  maturity: alpha
   provider:
     name: Openlabs
+  replaces: postgresql-operator-phases-1-2-3.v0.0.0
+  version: 0.0.1
