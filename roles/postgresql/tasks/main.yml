@@ -31,7 +31,7 @@
             volumes:
             - name: postgresql-data
               persistentVolumeClaim:
-                claimName: post-vol
+                claimName: "{{pvc}}"
 - name: Create the  service
   k8s:
     definition:

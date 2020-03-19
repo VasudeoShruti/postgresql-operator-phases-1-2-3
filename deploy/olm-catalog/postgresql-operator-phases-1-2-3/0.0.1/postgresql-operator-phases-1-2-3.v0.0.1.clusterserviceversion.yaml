@@ -6,23 +6,6 @@ metadata:
       [
         {
           "apiVersion": "postgresql.example.com/v1alpha1",
-          "kind": "PgBackup",
-          "metadata": {
-            "name": "example-pgbackup"
-          },
-          "spec": {
-            "backupFile": "data.sql",
-            "dbName": "books;students;employes;supermarket",
-            "image": "applicadb/postgres-python",
-            "postgresDb": "postgresdb",
-            "postgresPassword": "admin123",
-            "postgresUser": "postgresadmin",
-            "schedule": "*/1 * * * * ",
-            "serviceIp": "service.psql.svc.cluster.local"
-          }
-        },
-        {
-          "apiVersion": "postgresql.example.com/v1alpha1",
           "kind": "PgRestore",
           "metadata": {
             "name": "example-pgrestore"
@@ -31,9 +14,11 @@ metadata:
             "backupFile": "data.sql",
             "dbName": "supermarket-03-03-2020.sql;",
             "image": "applicadb/postgres-python",
+            "pgdata": "/var/lib/postgresql/data/pg-restore/",
             "postgresDb": "postgresdb",
             "postgresPassword": "admin123",
             "postgresUser": "postgresadmin",
+            "pvc": "postgres-pvc-3",
             "serviceIp": "service.psql.svc.cluster.local"
           }
         },
@@ -44,8 +29,28 @@ metadata:
             "name": "example-postgresql"
           },
           "spec": {
-            "image": "postgres",
+            "image": "postgres:10.4",
+            "pvc": "postgres-pvc-1",
             "size": 1
+          }
+        },
+        {
+          "apiVersion": "postgresql.example.com/v1alpha1",
+          "kind": "PgBackup",
+          "metadata": {
+            "name": "example-pgbackup"
+          },
+          "spec": {
+            "backupFile": "data.sql",
+            "dbName": "supermarket",
+            "image": "applicadb/postgres-python",
+            "pgdata": "/var/lib/postgresql/data/pg-backup/",
+            "postgresDb": "postgresdb",
+            "postgresPassword": "admin123",
+            "postgresUser": "postgresadmin",
+            "pvc": "postgres-pvc-2",
+            "schedule": "*/1 * * * * ",
+            "serviceIp": "service.psql.svc.cluster.local"
           }
         }
       ]
@@ -53,14 +58,6 @@ metadata:
   name: postgresql-operator-phases-1-2-3.v0.0.1
   namespace: placeholder
 spec:
-  keywords:
-  - postgres
-  - database
-  maintainers:
-  - email: openlabs@ibm.com
-    name: Openlabs
-  provider:
-    name: Openlabs
   apiservicedefinitions: {}
   customresourcedefinitions:
     owned:

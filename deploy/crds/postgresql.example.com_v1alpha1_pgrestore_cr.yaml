@@ -10,5 +10,6 @@ spec:
   postgresUser: postgresadmin
   postgresPassword: admin123
   backupFile: data.sql
-
+  pvc: postgres-pvc-3
+  pgdata: "/var/lib/postgresql/data/pg-restore/"
 

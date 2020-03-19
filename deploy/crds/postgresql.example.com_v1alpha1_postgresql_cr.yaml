@@ -6,3 +6,4 @@ spec:
   # Add fields here
   image: postgres:10.4
   size: 1
+  pvc: postgres-pvc-1

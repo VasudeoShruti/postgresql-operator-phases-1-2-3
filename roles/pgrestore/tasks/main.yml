@@ -28,6 +28,8 @@
                   value: "{{ postgres_user }}"
                 - name: POSTGRES_PASSWORD
                   value: "{{ postgres_password }}"
+                - name: PGDATA
+                  value: "{{pgdata}}"
               envFrom:
                 - configMapRef:
                     name: pgrestore-cm
@@ -40,5 +42,5 @@
             volumes:
             - name: postgresql-data
               persistentVolumeClaim:
-                claimName: postgresql-pvc-vol-2
+                claimName: "{{pvc}}"
 
