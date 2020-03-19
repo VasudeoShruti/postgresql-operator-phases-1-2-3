@@ -19,7 +19,7 @@
           spec:
             containers:
             - name: postgres
-              image: "{{image}}"
+              image: "{{ image }}"
               ports:
               - containerPort: 5432
               envFrom:
@@ -31,7 +31,7 @@
             volumes:
             - name: postgresql-data
               persistentVolumeClaim:
-                claimName: "{{pvc}}"
+                claimName: "{{ pvc }}"
 - name: Create the  service
   k8s:
     definition:

@@ -3,7 +3,7 @@ kind: PgBackup
 metadata:
   name: example-pgbackup
 spec:
-  image: applicadb/postgres-python 
+  image: "deekshah86/pgbackuprestore-ibmcloud:1"
   serviceIp: service.psql.svc.cluster.local
   dbName: supermarket
   postgresDb: postgresdb

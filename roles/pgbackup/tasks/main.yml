@@ -18,7 +18,6 @@
                 containers:
                   - name: postgres-backup
                     image: "{{ image }}"
-                    imagePullPolicy: "IfNotPresent"
                     ports:
                       - containerPort: 5432
                     env:
@@ -33,7 +32,7 @@
                       - name: POSTGRES_PASSWORD
                         value: "{{ postgres_password }}"
                       - name: PGDATA
-                        value: "{{pgdata}}"
+                        value: "{{ pgdata }}"
                     envFrom:
                       - configMapRef:
                           name: pgbackup-cm
@@ -41,8 +40,8 @@
                     - name: postgresql-data
                       mountPath: "/var/lib/postgresql/data"
                     command: ["/bin/sh","-c"]
-                    args: ["apt-get update && apt-get install -y wget && pip install ibm-cos-sdk && wget https://raw.githubusercontent.com/deekshahegde86/postgresql-operator-phases-1-2-3/master/scripts/backup/backup-db.sh && bash backup-db.sh "]
+                    args: ["bash backup-db.sh "]
                 volumes:
                 - name: postgresql-data
                   persistentVolumeClaim:
-                    claimName: "{{pvc}}"
+                    claimName: "{{ pvc }}"

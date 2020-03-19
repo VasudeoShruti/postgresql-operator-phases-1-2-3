@@ -3,7 +3,7 @@ kind: PgRestore
 metadata:
   name: example-pgrestore
 spec:
-  image: applicadb/postgres-python
+  image: "deekshah86/pgbackuprestore-ibmcloud:1"
   serviceIp: service.psql.svc.cluster.local
   dbName: supermarket-03-03-2020.sql;
   postgresDb: postgresdb

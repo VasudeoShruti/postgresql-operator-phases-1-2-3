@@ -13,8 +13,8 @@
             name: 'restore-postgres'
           spec:
             containers:
-            - name: postgres
-              image: applicadb/postgres-python
+            - name: postgres-restore
+              image: "{{ image }}"
               ports:
               - containerPort: 5432
               env:
@@ -29,7 +29,7 @@
                 - name: POSTGRES_PASSWORD
                   value: "{{ postgres_password }}"
                 - name: PGDATA
-                  value: "{{pgdata}}"
+                  value: "{{ pgdata }}"
               envFrom:
                 - configMapRef:
                     name: pgrestore-cm
@@ -37,10 +37,10 @@
               - name: postgresql-data
                 mountPath: "/var/lib/postgresql/data"
               command: ["/bin/sh","-c"]
-              args: ["apt-get update && apt-get install -y wget && pip install ibm-cos-sdk && wget https://raw.githubusercontent.com/deekshahegde86/postgresql-operator-phases-1-2-3/master/scripts/restore/restore-db-backup.sh && bash restore-db-backup.sh "]
+              args: ["bash restore-db-backup.sh "]
             restartPolicy: Never
             volumes:
             - name: postgresql-data
               persistentVolumeClaim:
-                claimName: "{{pvc}}"
+                claimName: "{{ pvc }}"
 
