@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pgrestore
+spec:
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+      - name: postgres-restore
+        image: deekshah86/pgbackuprestore-ibmcloud:1
+        ports:
+        - containerPort: 5432
+      restartPolicy: Never
