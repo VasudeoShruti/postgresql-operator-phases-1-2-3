@@ -9,6 +9,8 @@
         namespace: '{{ meta.namespace }}'
       spec:
         replias: 1
+        successfulJobsHistoryLimit: 2
+        failedJobsHistoryLimit: 1
         schedule: "{{ schedule }}"
         jobTemplate:
           spec:
