@@ -8,6 +8,7 @@
         name: 'restore-postgres-{{ meta.name }}'
         namespace: '{{ meta.namespace }}'
       spec:
+        ttlSecondsAfterFinished: 100
         template:
           metadata:
             name: 'restore-postgres'
