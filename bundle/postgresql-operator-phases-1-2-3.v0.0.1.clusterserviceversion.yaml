@@ -24,7 +24,6 @@ metadata:
             "name": "example-pgbackup"
           },
           "spec": {
-            "backupFile": "data.sql",
             "dbName": "supermarket",
             "image": "deekshah86/pgbackuprestore-ibmcloud:1",
             "pgdata": "/var/lib/postgresql/data/pg-backup/",
@@ -32,6 +31,7 @@ metadata:
             "postgresPassword": "admin123",
             "postgresUser": "postgresadmin",
             "pvc": "postgres-pvc-2",
+            "pgdata": "/var/lib/postgresql/data/pg-backup/",
             "schedule": "*/1 * * * * ",
             "serviceIp": "service.pgdb.svc.cluster.local",
             "version": "0.0.1"
@@ -44,7 +44,6 @@ metadata:
             "name": "example-pgrestore"
           },
           "spec": {
-            "backupFile": "data.sql",
             "dbName": "supermarket-03-03-2020.sql;",
             "image": "deekshah86/pgbackuprestore-ibmcloud:1",
             "pgdata": "/var/lib/postgresql/data/pg-restore/",
