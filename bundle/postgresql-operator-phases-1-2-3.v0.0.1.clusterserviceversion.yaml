@@ -80,8 +80,11 @@ spec:
   maintainers:
   - name: CoreOS, Inc
     email: support@coreos.com
-  provider:
-    name: Openlabs
+  provider: 
+    name: Postgresql Operator
+  links:
+  - name: Postgresql Operator
+    url: https://github.com/deekshahegde86/postgresql-operator-phases-1-2-3
   apiservicedefinitions: {}
   customresourcedefinitions:
     owned:
