@@ -59,7 +59,7 @@ metadata:
       ]
     capabilities: Full Lifecycle
     categories: "Database"
-    description: "Sample Operator"
+    description: "Postgresql Operator to deploy a Postgresql DB and perform Backups and Restore"
     containerImage: quay.io/repository/deekshah86/postgresql-operator
     createdAt: 2020-03-26T12:59:59Z
     support: Postgresql
@@ -81,7 +81,7 @@ spec:
   - name: CoreOS, Inc
     email: support@coreos.com
   provider: 
-    name: Postgresql Operator
+    name: OpenLabs
   links:
   - name: Postgresql Operator
     url: https://github.com/deekshahegde86/postgresql-operator-phases-1-2-3
