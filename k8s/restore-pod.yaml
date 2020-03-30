@@ -1,0 +1,62 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: pgrestore
+  namespace: pgdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: deekshah86/pgbackuprestore-ibmcloud:1
+          ports:
+            - containerPort: 5432
+          env:
+            - name: SERVICE_IP
+              value: postgres-1-service.pgdb.svc.cluster.local
+            - name: BACKUPDB_NAMES
+              value: supermarket-26-03-2020.sql
+            - name: POSTGRES_DB
+              value: postgresdb
+            - name: POSTGRES_USER
+              value: postgresadmin
+            - name: POSTGRES_PASSWORD
+              value: admin123
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pg-restore/
+          envFrom:
+            - configMapRef:
+                name: pgrestore-cm
+          volumeMounts:
+          - name: postgresql-data
+            mountPath: "/var/lib/postgresql/data"
+          command: ["/bin/sh","-c"]
+          args: ["bash restore-db-backup.sh "]
+      volumes:
+        - name: postgresql-data
+          persistentVolumeClaim:
+            claimName: postgres-pvc-3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgrestore
+  namespace: pgdb
+labels:
+  app: postgres
+spec:
+  ports:
+  - name: database
+    port: 5432
+    protocol: TCP
+    targetPort: 5432
+  selector:
+    app: postgres
